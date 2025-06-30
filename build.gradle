@@ -1,0 +1,110 @@
+buildscript {
+	repositories {
+		gradlePluginPortal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.5.3'
+		classpath 'io.spring.gradle:dependency-management-plugin:1.1.7'
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'checkstyle'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(24)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// Checkstyle configuration for code linting
+checkstyle {
+	toolVersion = '10.12.5'
+	configFile = file('config/checkstyle/checkstyle.xml')
+	configDirectory = file('config/checkstyle')
+	configProperties = [
+		'checkstyle.cache.file': "${buildDir}/checkstyle.cache"
+	]
+	ignoreFailures = false
+	maxWarnings = 0
+	maxErrors = 0
+}
+
+// Configure Checkstyle tasks
+checkstyleMain {
+	source = 'src/main/java'
+}
+
+checkstyleTest {
+	source = 'src/test/java'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	
+	// Configure test logging to show detailed information
+	testLogging {
+		events "started", "passed", "skipped", "failed"
+		exceptionFormat "full"
+		showExceptions true
+		showCauses true
+		showStackTraces true
+		
+		// Show individual test results
+		showStandardStreams = false
+	}
+	
+	// Show test results summary
+	afterSuite { desc, result ->
+		if (!desc.parent) {
+			println "\n=== Test Results ==="
+			println "Tests: ${result.testCount}"
+			println "Passed: ${result.successfulTestCount}"
+			println "Failed: ${result.failedTestCount}"
+			println "Skipped: ${result.skippedTestCount}"
+			println "Duration: ${(result.endTime - result.startTime)/1000}s"
+			
+			if (result.failedTestCount > 0) {
+				println "\n*** SOME TESTS FAILED ***"
+			} else {
+				println "\n*** ALL TESTS PASSED ***"
+			}
+			println "===================="
+		}
+	}
+}
+
+// ========== GIT HOOKS SETUP ==========
+// Apply git hooks installation script
+apply from: 'gradle/install-git-hooks.gradle'
+
+// Ensure hooks are installed during build
+build.dependsOn installGitHooks
+
+wrapper {
+	gradleVersion = '8.15'
+	distributionType = Wrapper.DistributionType.ALL
+}

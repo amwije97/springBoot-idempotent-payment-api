@@ -1,10 +1,10 @@
-package com.example.springboot_boilerplate_api.modules.hello.service.impl;
+package com.example.springBoot_idempotent_payment_api.modules.payment.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.example.springboot_boilerplate_api.modules.hello.service.HelloService;
+import com.example.springBoot_idempotent_payment_api.modules.payment.service.PaymentService;
 
 /**
  * Implementation of HelloService.
@@ -13,12 +13,12 @@ import com.example.springboot_boilerplate_api.modules.hello.service.HelloService
  * best practices - Input validation and processing
  */
 @Service
-public class HelloServiceImpl implements HelloService {
+public class PaymentServiceImpl implements PaymentService {
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     @Override
-    public String getPersonalizedGreeting(String name) {
+    public String postPayments(String name) {
         logger.debug("Generating personalized greeting for: {}", name);
 
         // Simple input validation

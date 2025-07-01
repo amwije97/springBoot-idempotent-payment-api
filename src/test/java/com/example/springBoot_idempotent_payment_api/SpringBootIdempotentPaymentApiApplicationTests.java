@@ -1,10 +1,10 @@
-package com.example.springboot_boilerplate_api;
+package com.example.springBoot_idempotent_payment_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootBoilerplateApiApplicationTests {
+class SpringBootIdempotentPaymentApiApplicationTests {
 
     @Test
     void contextLoads() {

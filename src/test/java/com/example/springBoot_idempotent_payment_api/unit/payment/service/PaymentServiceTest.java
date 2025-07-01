@@ -1,11 +1,10 @@
-package com.example.springboot_boilerplate_api.unit.hello.service;
+package com.example.springBoot_idempotent_payment_api.unit.payment.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.springBoot_idempotent_payment_api.modules.payment.service.impl.PaymentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.example.springboot_boilerplate_api.modules.hello.service.impl.HelloServiceImpl;
 
 /**
  * Unit test for HelloService.
@@ -15,13 +14,13 @@ import com.example.springboot_boilerplate_api.modules.hello.service.impl.HelloSe
  *
  * <p>Use this pattern for testing your service classes.
  */
-class HelloServiceTest {
+class PaymentServiceTest {
 
-    private HelloServiceImpl helloService;
+    private PaymentServiceImpl paymentService;
 
     @BeforeEach
     void setUp() {
-        helloService = new HelloServiceImpl();
+        paymentService = new PaymentServiceImpl();
     }
 
     @Test
@@ -30,7 +29,7 @@ class HelloServiceTest {
         String name = "Developer";
 
         // When
-        String result = helloService.getPersonalizedGreeting(name);
+        String result = paymentService.postPayments(name);
 
         // Then
         assertNotNull(result);
@@ -44,7 +43,7 @@ class HelloServiceTest {
         IllegalArgumentException exception =
                 assertThrows(
                         IllegalArgumentException.class,
-                        () -> helloService.getPersonalizedGreeting(null));
+                        () -> paymentService.postPayments(null));
 
         assertEquals("Name cannot be empty", exception.getMessage());
     }
@@ -55,7 +54,7 @@ class HelloServiceTest {
         IllegalArgumentException exception =
                 assertThrows(
                         IllegalArgumentException.class,
-                        () -> helloService.getPersonalizedGreeting("   "));
+                        () -> paymentService.postPayments("   "));
 
         assertEquals("Name cannot be empty", exception.getMessage());
     }

@@ -1,4 +1,4 @@
-package com.example.springboot_boilerplate_api.config;
+package com.example.springBoot_idempotent_payment_api.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

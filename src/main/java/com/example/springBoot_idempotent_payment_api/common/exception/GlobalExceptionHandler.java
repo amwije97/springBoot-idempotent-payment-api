@@ -1,4 +1,4 @@
-package com.example.springboot_boilerplate_api.common.exception;
+package com.example.springBoot_idempotent_payment_api.common.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.springboot_boilerplate_api.common.dto.ApiResponse;
+import com.example.springBoot_idempotent_payment_api.common.dto.ApiResponse;
 
 /**
  * Global exception handler for consistent error responses across the application.

@@ -1,4 +1,4 @@
-package com.example.springboot_boilerplate_api.common.dto;
+package com.example.springBoot_idempotent_payment_api.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

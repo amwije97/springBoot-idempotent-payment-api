@@ -1,4 +1,4 @@
-package com.example.springboot_boilerplate_api.modules.hello.service;
+package com.example.springBoot_idempotent_payment_api.modules.payment.service;
 
 /**
  * Service interface for Hello module operations.
@@ -7,7 +7,7 @@ package com.example.springboot_boilerplate_api.modules.hello.service;
  * Keep controllers thin by delegating to services - Enable easy testing with mocks - Support
  * multiple implementations if needed
  */
-public interface HelloService {
+public interface PaymentService {
 
     /**
      * Get a personalized greeting message.
@@ -15,7 +15,7 @@ public interface HelloService {
      * @param name the name to include in the greeting
      * @return personalized greeting message
      */
-    String getPersonalizedGreeting(String name);
+    String postPayments(String name);
 
     // TODO: Add more business method contracts as your application grows
     // Examples:

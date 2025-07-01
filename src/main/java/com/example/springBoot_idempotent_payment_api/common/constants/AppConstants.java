@@ -1,4 +1,4 @@
-package com.example.springboot_boilerplate_api.common.constants;
+package com.example.springBoot_idempotent_payment_api.common.constants;
 
 /**
  * Application-wide constants.
